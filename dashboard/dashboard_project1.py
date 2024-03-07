@@ -1,8 +1,6 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sbn
 import streamlit as st
+import altair as alt
+import pandas as pd
 
 ## df Wrangling
 st.title("Bike Sharing Dataset (Day)")
@@ -24,6 +22,7 @@ st.write(
 st.header('Gathering df')
 data = pd.read_csv('https://raw.githubusercontent.com/khenihikmah/Bangkit-Dashboard/master/Data/day.csv')
 
+data = load_data()
 
 ## Pada musim apa total sewa sepeda paling banyak dan paling sedikit
 # Mengganti nilai dalam kolom 'season' dengan label yang sesuai
@@ -115,3 +114,33 @@ def display_seasonal_averages():
     seasonal_averages = calculate_seasonal_averages()
     st.dataframe(seasonal_averages, width=800)  # Mengatur lebar tabel menjadi 800 piksel
 
+
+# Main
+def main():
+    st.title('🚲Dashboard Sewa Sepeda🚲')
+    st.write("Dashboard ini menampilkan informasi tentang sewa sepeda berdasarkan season dan workingday serta rata-rata temperatur, humidity dan windspeed pada setiap musim")
+
+    # Total rental berdasakan musim
+    rental_by_season()
+    st.write("\n")
+    st.write("\n")
+    st.write("\n")
+
+    # Total rental berdasarkan workingday
+    rental_by_workingday()
+    st.write("\n")
+    st.write("\n")
+    st.write("\n")
+
+    # Menampilkan tabel antara season, rata-rata temp, rata-rata hum, rata-rata windspeed di dashboard
+    display_seasonal_averages()
+    st.write("\n")
+    st.write("\n")
+    st.write("\n")
+    
+    # Kesimpulan
+    st.header("Kesimpulan")
+    st.write("Pada season fall orang paling banyak menyewa sepeda, hal ini dapat disebabkan karena beberapa faktor diantaranya yaitu suhu yang sejuk (tidak terlalu panas atau terlalu dingin) rata-rata berkisar sekitar 28.9°C, lalu kelembapan udara yang nyaman dengan rata-rata berkisar 63.3, serta kecepatan angin yang menyegarkan (tidak terlalu kencang) dengan rata-rata berkisar 11.53 km/jam.")
+    st.write("Jumlah total sepeda sewaan termasuk casual dan registered paling banyak terdapat pada saat weekend/holiday, hal ini mungkin dikarenakan pada saat weekend/holiday seringkali menjadi waktu luang bagi banyak orang. Orang-orang cenderung memiliki lebih banyak waktu untuk melakukan aktivitas rekreasi atau bersantai, termasuk bersepeda.")
+if __name__ == "__main__":
+    main()
