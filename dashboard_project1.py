@@ -39,7 +39,7 @@ st.write(
     """
 )
 st.header('Gathering df')
-df_1 = pd.read_csv(r"C:\Users\ACER\Downloads\DataTiantan.csv")
+df_1 = pd.read_csv(r"https://raw.githubusercontent.com/khenihikmah/Bangkit-Dashboard/master/dashboard/DataTiantan.csv")
 df_1
 df = df_1.dropna()
 

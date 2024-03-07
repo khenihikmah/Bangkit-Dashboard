@@ -1,6 +1,4 @@
 # How to Run The Dashboard
-
-Haloo in rei
 ### Setup environment
 In this case, I have had an environment called `sparta_da` that contains the list of packages that required. So, I should activate that environment.
 
