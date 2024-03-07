@@ -70,7 +70,7 @@ col1, col2= st.columns(2)
 with col1:
     st.table(create_PM10_tabel(df))
 with col2:
-    st.table(create_PM10_tabel(df).sort_values(by="PM10"))
+    st.table(create_O3_tabel(df).sort_values(by="O3"))
 
 
 #create_O3_tabel
