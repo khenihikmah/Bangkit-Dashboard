@@ -107,6 +107,19 @@ def display_ssnl_vrgs():
 
 def main():
     st.title('Dashboard Sewa Sepeda PT Kheni Mandiri')
+    
+    # Total rental berdasakan musim
+    rental_by_season()
+    st.write("\n")
+    st.write("\n")
+    st.write("\n")
+
+    # Total rental berdasarkan workingday
+    rental_by_workingday()
+    st.write("\n")
+    st.write("\n")
+    st.write("\n")
+    
     st.header("Conclution")
     st.write("Jumlah total sepeda sewaan termasuk casual dan registered paling banyak terjadi ***season fall***, dan paling sedikit terjadi ***season springer***. Season fall menjadi musim dengan pengguna sepeda paling tinggi diantaean season springer karena masyarakat IPB University merasa nyaman untuk bersepeda dengan suhu udara yang sejuk disertai dengan cuaca yang lebih stabil untuk menikmati alam sekitar. PT Kheni Mandiri diharapkan mampu menyediakan sepeda yang banyak untuk antisipasi adanya kenaikan penyewa sepeda. ")
     st.write("Jumlah pengguna biasa (casual), jumlah pengguna terdaftar (registered), dan jumlah total sepeda sewaan termasuk casual dan registered paling banyak terjadi saat weekend/holiday. Hal ini terjadi karena weekeen/holiday masyarakat lebih suka menikmati harinya dengan berkeliling di area Kampus. Baik itu mahasiswa ataupun masyarakat setempat. Hampir 2 kali lipat perbandingan penyewa sepeda saat weekend dan saat jam kerja. Karena mungkin saat jam kerja masyarakat lebih memilih menggunakan sepeda motor atau ojek online untuk mengantarnya ke tempat tujuan daripada bersepeda. PT Kheni Mandiri dapat menyusun strategi yang bagus untuk mendapatkan hasil yang optimal dari penyewaan sepeda pada saat weekend/holiday.")
