@@ -79,7 +79,7 @@ def create_O3_tabel(df):
     O3_tabel = O3_per_tahun[['O3','hour']].groupby(['hour']).median()
     return O3_tabel
 
-st.header('Melihat PM10 di tiap Bulannya')
+st.header('Melihat O3 di tiap Bulannya')
 fig, ax = plt.subplots(figsize=(12, 6))
 plt.style.use('ggplot')
 ax.plot(
