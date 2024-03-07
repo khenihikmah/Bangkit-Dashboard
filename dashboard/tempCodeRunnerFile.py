@@ -20,18 +20,18 @@ st.write(
     """
     )
 st.header('Gathering df')
-data = pd.read_csv('https://github.com/khenihikmah/Bangkit-Dashboard/blob/master/Data/day.csv')
+data = pd.read_csv('https://raw.githubusercontent.com/khenihikmah/Bangkit-Dashboard/master/Data/day.csv')
 
 ## PT Kheni Mandiri merupakan suatu PT yang menyediakan jasa sewa sepeda untuk masyarakat di sekitar kampus IPB University. PT Kheni Mandiri ingin mengetahui season apa yang total sewa sepeda miliknya paling banyak dan paling sedikit. Hal ini dapat digunakan untuk evaluasi PT kedepannya. Dan memberikan strategi pengembangan bisnisnya agar lebih sukses.
 data['season'] = data['season'].replace({1: 'Springer', 2: 'Summer', 3: 'Fall', 4: 'Winter'})
 def rental_by_season():
     season_cnt = data.groupby('season')['cnt'].sum().reset_index()
-    max_season = season_cnt.loc[season_cnt ['cnt'].idxmax()]
-    min_season = season_cnt [season_cnt ['cnt'].idxmin()]
+    max_season = season_cnt.loc[season_cnt['cnt'].idxmax()]
+    min_season = season_cnt.loc[season_cnt['cnt'].idxmin()]
 
     text_font_size = 20
 
-    chart = alt.Chart(season_cnt ).mark_bar().encode(
+    chart = alt.Chart(season_cnt).mark_bar().encode(
         x=alt.X('season:N', axis=alt.Axis(labelFontSize=text_font_size)),  
         y=alt.Y('cnt:Q', axis=alt.Axis(labelFontSize=text_font_size)),     
         color=alt.condition(
@@ -59,7 +59,7 @@ data['workingday'] = data['workingday'].replace({1: 'Weekend/Holiday', 0: 'Lainn
 
 def rental_by_workingday():
     workingday_cnt = data.groupby('workingday')['cnt'].sum().reset_index()
-    max_workingday = wworkingday_cnt.loc[wworkingday_cnt['cnt'].idxmax()]
+    max_workingday = workingday_cnt.loc[workingday_cnt['cnt'].idxmax()]
     min_workingday = workingday_cnt.loc[workingday_cnt['cnt'].idxmin()]
 
     text_font_size = 20
@@ -83,49 +83,50 @@ def rental_by_workingday():
     
     )
     st.altair_chart(chart, use_container_width=True)
-    st.write("Total sewa sepeda pada hari kerja:", wworkingday_cnt.loc[workingday_cnt['workingday'] == 'Lainnya', 'cnt'].iloc[0])
-    st.write("Total sewa sepeda pada weekend/holiday:", wworkingday_cnt.loc[wworkingday_cnt['workingday'] == 'Weekend/Holiday', 'cnt'].iloc[0])
+    st.write("Total sewa sepeda pada hari kerja:", workingday_cnt.loc[workingday_cnt['workingday'] == 'Lainnya', 'cnt'].iloc[0])
+    st.write("Total sewa sepeda pada weekend/holiday:", workingday_cnt.loc[workingday_cnt['workingday'] == 'Weekend/Holiday', 'cnt'].iloc[0])
 
 
 # Rata-rata temp, hum, dan windspeed 
-def calculate_ssnl_vrgs():
-    ssnl_vrgs = data.groupby('season').agg({
+def calculate_seasonal_avrg():
+    seasonal_avrg = data.groupby('season').agg({
     "temp": lambda x: x.mean() * 41,
     "hum": lambda x: x.mean() * 100,
     "windspeed": lambda x: x.mean() * 67
     }).reset_index()
-    ssnl_vrgs['temp'] =  ssnl_vrgss['temp'].round(2)  
-    ssnl_vrgs['hum'] =  ssnl_vrgs['hum'].round(2)   
-    ssnl_vrgs['windspeed'] = ssnl_vrgs['windspeed'].round(2)  
-    return  ssnl_vrgs
+    seasonal_avrg['temp'] = seasonal_avrg['temp'].round(2)  
+    seasonal_avrg['hum'] = seasonal_avrg['hum'].round(2)   
+    seasonal_avrg['windspeed'] = seasonal_avrg['windspeed'].round(2)  
+    return seasonal_avrg
 
-def display_ssnl_vrgs():
+def display_seasonal_avrg():
     st.subheader('Rata-Rata Temperatur, Humidity dan Windspeed')
-    ssnl_vrgs = calculate_ssnl_vrgs()
-    st.dataframe( ssnl_vrgs, width=800)  
+    seasonal_avrg = calculate_seasonal_avrg()
+    st.dataframe(seasonal_avrg, width=800)  
 
-#Main
+# Main
 def main():
     st.title('Dashboard Sewa Sepeda PT Kheni Mandiri')
     
-    # Total rental berdasakan musim
+    # Berdasakan musim
     rental_by_season()
     st.write("\n")
     st.write("\n")
     st.write("\n")
 
-    # Total rental berdasarkan workingday
+    # Berdasarkan Workingday
     rental_by_workingday()
     st.write("\n")
     st.write("\n")
     st.write("\n")
-    
-    # Menampilkan tabel antara season, rata-rata temp, rata-rata hum, rata-rata windspeed di dashboard
-    display_ssnl_vrgs()
+
+    # Season, rata-rata temp, rata-rata hum, rata-rata windspeed 
+    display_seasonal_avrg()
     st.write("\n")
     st.write("\n")
     st.write("\n")
     
+    # Conclution
     st.header("Conclution")
     st.write("Jumlah total sepeda sewaan termasuk casual dan registered paling banyak terjadi ***season fall***, dan paling sedikit terjadi ***season springer***. Season fall menjadi musim dengan pengguna sepeda paling tinggi diantaean season springer karena masyarakat IPB University merasa nyaman untuk bersepeda dengan suhu udara yang sejuk disertai dengan cuaca yang lebih stabil untuk menikmati alam sekitar. PT Kheni Mandiri diharapkan mampu menyediakan sepeda yang banyak untuk antisipasi adanya kenaikan penyewa sepeda. ")
     st.write("Jumlah pengguna biasa (casual), jumlah pengguna terdaftar (registered), dan jumlah total sepeda sewaan termasuk casual dan registered paling banyak terjadi saat weekend/holiday. Hal ini terjadi karena weekeen/holiday masyarakat lebih suka menikmati harinya dengan berkeliling di area Kampus. Baik itu mahasiswa ataupun masyarakat setempat. Hampir 2 kali lipat perbandingan penyewa sepeda saat weekend dan saat jam kerja. Karena mungkin saat jam kerja masyarakat lebih memilih menggunakan sepeda motor atau ojek online untuk mengantarnya ke tempat tujuan daripada bersepeda. PT Kheni Mandiri dapat menyusun strategi yang bagus untuk mendapatkan hasil yang optimal dari penyewaan sepeda pada saat weekend/holiday.")
