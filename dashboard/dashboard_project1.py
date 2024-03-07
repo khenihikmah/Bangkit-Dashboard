@@ -6,7 +6,7 @@ import streamlit as st
 
 ## df Wrangling
 
-st.title("Air Quality in Tiantan")
+st.title("Bike Sharing Dataset (Day)")
 st.write(
     """
     Nama: [Kheni Hikmah Lestari]
@@ -22,24 +22,8 @@ st.write(
     ID Dicoding: [khenihikmah130303]
     """
     )
-st.write(
-    """"
-    Air Quality mengacu pada tingkat kebersihan dan kemurnian udara di suatu wilayah atau lokasi tertentu. 
-    Kualitas udara dipengaruhi oleh sejumlah parameter dan polutan udara, seperti partikulat matter (PM), 
-    nitrogen dioksida (NO2), sulfur dioksida (SO2), karbon monoksida (CO), ozon (O3), dan lainnya. Pengukuran
-    kualitas udara umumnya dilakukan untuk memantau tingkat polusi dan memastikan keamanan serta kesehatan masyarakat.
-    """
-)
-st.write(
-    """"
-    Dashboard Air Quality dapat menyajikan informasi ini dalam format visual yang mudah dimengerti. Hal ini dapat 
-    mencakup pemantauan terhadap tingkat polutan tertentu, perubahan seiring waktu, dan pembandingan dengan standar 
-    kebersihan udara yang ditetapkan oleh lembaga pemerintah atau organisasi lingkungan. Dashboard semacam itu membantu
-    masyarakat dan pemangku kepentingan lainnya untuk memahami dan mengambil tindakan terkait kualitas udara di suatu daerah.
-    """
-)
 st.header('Gathering df')
-df = pd.read_csv(r"https://raw.githubusercontent.com/khenihikmah/Bangkit-Dashboard/master/dashboard/day.csv")
+data = pd.read_csv(r"https://raw.githubusercontent.com/khenihikmah/Bangkit-Dashboard/master/dashboard/day.csv")
 
 
 ## Pada musim apa total sewa sepeda paling banyak dan paling sedikit
