@@ -22,8 +22,6 @@ st.write(
 st.header('Gathering df')
 data = pd.read_csv('https://raw.githubusercontent.com/khenihikmah/Bangkit-Dashboard/master/Data/day.csv')
 
-data = load_data()
-
 ## Pada musim apa total sewa sepeda paling banyak dan paling sedikit
 # Mengganti nilai dalam kolom 'season' dengan label yang sesuai
 data['season'] = data['season'].replace({1: 'Springer', 2: 'Summer', 3: 'Fall', 4: 'Winter'})
