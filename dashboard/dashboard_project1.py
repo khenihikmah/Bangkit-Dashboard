@@ -20,7 +20,7 @@ st.write(
     """
     )
 st.header('Gathering df')
-data = pd.read_csv('https://raw.githubusercontent.com/khenihikmah/Bangkit-Dashboard/master/Data/day.csv')
+data = pd.read_csv('https://github.com/khenihikmah/Bangkit-Dashboard/blob/master/Data/day.csv')
 
 ## PT Kheni Mandiri merupakan suatu PT yang menyediakan jasa sewa sepeda untuk masyarakat di sekitar kampus IPB University. PT Kheni Mandiri ingin mengetahui season apa yang total sewa sepeda miliknya paling banyak dan paling sedikit. Hal ini dapat digunakan untuk evaluasi PT kedepannya. Dan memberikan strategi pengembangan bisnisnya agar lebih sukses.
 data['season'] = data['season'].replace({1: 'Springer', 2: 'Summer', 3: 'Fall', 4: 'Winter'})
